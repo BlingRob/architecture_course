@@ -5,7 +5,7 @@ find_package(Boost REQUIRED CONFIG)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(CPP_FILES main.cpp)
+set(CPP_FILES main.cpp json_rpc_server.cpp secret_data_manager.cpp)
 
 add_executable (${PROJECT_NAME} ${CPP_FILES})
 

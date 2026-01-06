@@ -6,10 +6,12 @@ class ArchitectureCourseRecipe(ConanFile):
     generators = "CMakeDeps"
 
     options = {
+        "sanitaizer": [True, False],
         "json_rpc_server": [True, False]
     }
     
     default_options = {
+        "sanitaizer": False,
         "json_rpc_server": False
     }
 
