@@ -1,0 +1,124 @@
+// Пример 1: Добавление данных (успешно)
+Запрос:
+{
+    "jsonrpc": "2.0",
+    "method": "manageSecretData",
+    "params": {
+        "action": "add",
+        "dataID": "secret123",
+        "userData": "My secret data",
+        "accessLevel": "admin",
+        "language": "ru-RU"
+    },
+    "id": 1
+}
+
+Ответ:
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "status": "success",
+        "message": "Data added successfully",
+        "data": null
+    },
+    "id": 1
+}
+
+// Пример 2: Получение данных (нет доступа)
+Запрос:
+{
+    "jsonrpc": "2.0",
+    "method": "manageSecretData",
+    "params": {
+        "action": "get",
+        "dataID": "secret123",
+        "accessLevel": "user",
+        "language": "en-US"
+    },
+    "id": 2
+}
+
+Ответ:
+{
+    "jsonrpc": "2.0",
+    "error": {
+        "code": 100,
+        "message": "Access denied",
+        "data": null
+    },
+    "id": 2
+}
+
+// Пример 3: Удаление данных (только superAdmin)
+Запрос:
+{
+    "jsonrpc": "2.0",
+    "method": "manageSecretData",
+    "params": {
+        "action": "delete",
+        "dataID": "secret123",
+        "accessLevel": "admin",
+        "language": "fr-FR"
+    },
+    "id": 3
+}
+
+Ответ:
+{
+    "jsonrpc": "2.0",
+    "error": {
+        "code": 100,
+        "message": "Accès refusé",
+        "data": null
+    },
+    "id": 3
+}
+
+// Пример 4: Batch запрос
+Запрос:
+[
+    {
+        "jsonrpc": "2.0",
+        "method": "manageSecretData",
+        "params": {
+            "action": "add",
+            "dataID": "data1",
+            "userData": "Secret 1",
+            "accessLevel": "user",
+            "language": "en-US"
+        },
+        "id": 1
+    },
+    {
+        "jsonrpc": "2.0",
+        "method": "listSecretData",
+        "params": {
+            "accessLevel": "user",
+            "language": "en-US"
+        },
+        "id": 2
+    }
+]
+
+Ответ:
+[
+    {
+        "jsonrpc": "2.0",
+        "result": {
+            "status": "success",
+            "message": "Data added successfully",
+            "data": null
+        },
+        "id": 1
+    },
+    {
+        "jsonrpc": "2.0",
+        "result": {
+            "status": "success",
+            "message": "Data list retrieved successfully",
+            "data": ["data1"],
+            "count": 1
+        },
+        "id": 2
+    }
+]
