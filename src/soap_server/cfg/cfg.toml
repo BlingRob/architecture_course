@@ -1,0 +1,11 @@
+[logging]
+filename = "soap_server.log"
+log_dir = "./Logs"
+# 0 - 6
+log_level = 5
+
+[server_parameters]
+port = 8080
+host = "0.0.0.0"
+version = "v1"
+threads = 1

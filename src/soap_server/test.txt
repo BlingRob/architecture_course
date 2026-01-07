@@ -1,0 +1,160 @@
+{
+  "info": {
+    "name": "Task Management SOAP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get WSDL",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/soap",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["soap"]
+        },
+        "description": "Получить WSDL описание сервиса"
+      },
+      "response": []
+    },
+    {
+      "name": "CreateTask",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "CreateTask"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\n               xmlns:tns=\"http://www.example.com/taskmanagement\">\n  <soap:Body>\n    <tns:CreateTaskRequest>\n      <tns:Task>\n        <tns:TaskID>TASK001</tns:TaskID>\n        <tns:Title>Завершить проект</tns:Title>\n        <tns:Description>Завершить разработку SOAP сервера</tns:Description>\n        <tns:Status>New</tns:Status>\n      </tns:Task>\n    </tns:CreateTaskRequest>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/soap",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["soap"]
+        },
+        "description": "Создание новой задачи"
+      },
+      "response": []
+    },
+    {
+      "name": "GetTask",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "GetTask"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\n               xmlns:tns=\"http://www.example.com/taskmanagement\">\n  <soap:Body>\n    <tns:GetTaskRequest>\n      <tns:TaskID>TASK001</tns:TaskID>\n    </tns:GetTaskRequest>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/soap",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["soap"]
+        },
+        "description": "Получение задачи по ID"
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateTask",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "UpdateTask"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\n               xmlns:tns=\"http://www.example.com/taskmanagement\">\n  <soap:Body>\n    <tns:UpdateTaskRequest>\n      <tns:Task>\n        <tns:TaskID>TASK001</tns:TaskID>\n        <tns:Title>Обновленный заголовок</tns:Title>\n        <tns:Description>Обновленное описание задачи</tns:Description>\n        <tns:Status>In Progress</tns:Status>\n      </tns:Task>\n    </tns:UpdateTaskRequest>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/soap",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["soap"]
+        },
+        "description": "Обновление задачи"
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteTask",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8"
+          },
+          {
+            "key": "SOAPAction",
+            "value": "DeleteTask"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\n               xmlns:tns=\"http://www.example.com/taskmanagement\">\n  <soap:Body>\n    <tns:DeleteTaskRequest>\n      <tns:TaskID>TASK001</tns:TaskID>\n    </tns:DeleteTaskRequest>\n  </soap:Body>\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/soap",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["soap"]
+        },
+        "description": "Удаление задачи"
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://www.example.com/taskmanagement"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://www.example.com/taskmanagement">
+
+  <!-- Type Definitions -->
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.com/taskmanagement">
+      <!-- Task structure -->
+      <xsd:complexType name="Task">
+        <xsd:sequence>
+          <xsd:element name="TaskID" type="xsd:string"/>
+          <xsd:element name="Title" type="xsd:string"/>
+          <xsd:element name="Description" type="xsd:string"/>
+          <xsd:element name="Status" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Error message -->
+      <xsd:complexType name="ServiceFault">
+        <xsd:sequence>
+          <xsd:element name="ErrorCode" type="xsd:string"/>
+          <xsd:element name="ErrorMessage" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Request/Response elements -->
+      <xsd:element name="CreateTaskRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Task" type="tns:Task"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="CreateTaskResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Task" type="tns:Task"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetTaskRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="TaskID" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetTaskResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Task" type="tns:Task"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="UpdateTaskRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Task" type="tns:Task"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="UpdateTaskResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Task" type="tns:Task"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="DeleteTaskRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="TaskID" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="DeleteTaskResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Success" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <!-- Message Definitions -->
+  <wsdl:message name="CreateTaskInput">
+    <wsdl:part name="parameters" element="tns:CreateTaskRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateTaskOutput">
+    <wsdl:part name="parameters" element="tns:CreateTaskResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetTaskInput">
+    <wsdl:part name="parameters" element="tns:GetTaskRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetTaskOutput">
+    <wsdl:part name="parameters" element="tns:GetTaskResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateTaskInput">
+    <wsdl:part name="parameters" element="tns:UpdateTaskRequest"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateTaskOutput">
+    <wsdl:part name="parameters" element="tns:UpdateTaskResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskInput">
+    <wsdl:part name="parameters" element="tns:DeleteTaskRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskOutput">
+    <wsdl:part name="parameters" element="tns:DeleteTaskResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceFault">
+    <wsdl:part name="fault" element="tns:ServiceFault"/>
+  </wsdl:message>
+
+  <!-- Port Type Definitions -->
+  <wsdl:portType name="TaskManagementPortType">
+    <wsdl:operation name="CreateTask">
+      <wsdl:input message="tns:CreateTaskInput"/>
+      <wsdl:output message="tns:CreateTaskOutput"/>
+      <wsdl:fault name="ServiceFault" message="tns:ServiceFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <wsdl:input message="tns:GetTaskInput"/>
+      <wsdl:output message="tns:GetTaskOutput"/>
+      <wsdl:fault name="ServiceFault" message="tns:ServiceFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <wsdl:input message="tns:UpdateTaskInput"/>
+      <wsdl:output message="tns:UpdateTaskOutput"/>
+      <wsdl:fault name="ServiceFault" message="tns:ServiceFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:input message="tns:DeleteTaskInput"/>
+      <wsdl:output message="tns:DeleteTaskOutput"/>
+      <wsdl:fault name="ServiceFault" message="tns:ServiceFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <!-- Binding Definitions -->
+  <wsdl:binding name="TaskManagementBinding" type="tns:TaskManagementPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="CreateTask" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="GetTask" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="UpdateTask" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="DeleteTask" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <!-- Service Definitions -->
+  <wsdl:service name="TaskManagementService">
+    <wsdl:port name="TaskManagementPort" binding="tns:TaskManagementBinding">
+      <soap:address location="http://localhost:8080/soap"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
