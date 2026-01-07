@@ -1,0 +1,24 @@
+1. Получить все книги с пагинацией
+
+bash
+curl -X GET "http://localhost:8080/books?page=1&limit=2"
+
+2. Получить книги определенного жанра
+bash
+curl -X GET "http://localhost:8080/books?genre=Фантастика"
+
+3. Добавить новую книгу
+bash
+curl -X POST "http://localhost:8080/books" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "1984", "genre": "Антиутопия", "year": 1949, "authorId": 2}'
+
+4. Получить автора с количеством книг
+bash
+curl -X GET "http://localhost:8080/authors/1?includeBooks=true"
+
+5. Добавить нового автора
+bash
+curl -X POST "http://localhost:8080/authors" \
+  -H "Content-Type: application/json" \
+  -d '{"firstName": "Джордж", "lastName": "Оруэлл", "dob": "1903-06-25"}'

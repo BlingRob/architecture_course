@@ -1,0 +1,9 @@
+[logging]
+filename = "rest_server.log"
+log_dir = "./Logs"
+# 0 - 6
+log_level = 5
+
+[server_parameters]
+port = 15000
+host = "0.0.0.0"

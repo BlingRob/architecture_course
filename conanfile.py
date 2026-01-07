@@ -9,26 +9,30 @@ class ArchitectureCourseRecipe(ConanFile):
         "sanitaizer": [True, False],
         "json_rpc_server": [True, False],
         "soap_server": [True, False],
-        "grpc_server": [True, False]
+        "grpc_server": [True, False],
+        "rest_server": [True, False]
     }
     
     default_options = {
         "sanitaizer": False,
         "json_rpc_server": False,
         "soap_server": False,
-        "grpc_server": False
+        "grpc_server": False,
+        "rest_server": False
     }
 
     def requirements(self):
         self.requires("boost/1.88.0")
         self.requires("quill/10.0.1")
         self.requires("tomlplusplus/3.4.0")
-        if self.options.json_rpc_server:
+        if self.options.json_rpc_server or self.options.rest_server:
             self.requires("nlohmann_json/3.11.3")
         if self.options.soap_server:
             self.requires("pugixml/1.15")
         if self.options.grpc_server:
             self.requires("asio-grpc/3.5.0")
+        if self.options.rest_server:
+            self.requires("cpp-httplib/0.29.0")
 
     # def configure(self):
     #     if self.options.grpc_server:
@@ -40,6 +44,7 @@ class ArchitectureCourseRecipe(ConanFile):
         tc.variables["JSON_RPC_SERVER"] = self.options.json_rpc_server
         tc.variables["SOAP_SERVER"] = self.options.soap_server
         tc.variables["GRPC_SERVER"] = self.options.grpc_server
+        tc.variables["REST_SERVER"] = self.options.rest_server
         tc.generate()
 
     def build(self):
