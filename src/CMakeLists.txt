@@ -23,5 +23,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 # endif()
 
 # if(SOAP_SERVER)
-    add_subdirectory(soap_server)
+    # add_subdirectory(soap_server)
+# endif()
+
+# if(SOAP_SERVER)
+    add_subdirectory(grpc_server)
 # endif()
