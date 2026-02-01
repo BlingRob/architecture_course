@@ -1,8 +1,8 @@
-#include "json_rpc_server.h"
 #include "logger.h"
 #include "secret_data_manager.h"
+#include "server.h"
 
-#include <format>
+
 #include <iostream>
 #include <memory>
 #include <toml.hpp>
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     LOG_INFO(logger.get(),
              "Server {}:{} with version: {} on {} threads was started", address,
              port, version, threads);
-    data_manager.RegisterMethods(server.get_registry());
+    data_manager.RegisterMethods(server.GetRegistry());
 
     server.Run();
 

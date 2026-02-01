@@ -45,6 +45,7 @@ class ArchitectureCourseRecipe(ConanFile):
         tc.variables["SOAP_SERVER"] = self.options.soap_server
         tc.variables["GRPC_SERVER"] = self.options.grpc_server
         tc.variables["REST_SERVER"] = self.options.rest_server
+        tc.variables["GRAPH_QL_SERVER"] = self.options.rest_server
         tc.generate()
 
     def build(self):

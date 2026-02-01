@@ -1,6 +1,6 @@
 #pragma once
 
-#include "json_rpc_server.h"
+#include "server.h"
 #include <mutex>
 #include <string>
 #include <unordered_map>
@@ -61,9 +61,6 @@ private:
   json handleGetStats(const json &params, const std::string &language);
 
 private:
-  std::unordered_map<std::string, SecretData> data_store_;
-  std::mutex mutex_;
-
   // Коды ошибок приложения
   enum AppErrorCodes {
     ACCESS_DENIED = 100,
@@ -73,6 +70,10 @@ private:
     DATA_ALREADY_EXISTS = 104,
     MISSING_REQUIRED_FIELD = 105
   };
+
+private:
+  std::unordered_map<std::string, SecretData> data_store_;
+  std::mutex mutex_;
 };
 
 } // namespace SecretData

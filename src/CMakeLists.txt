@@ -9,6 +9,7 @@ set(LOGGER_SRC logger/logger.cpp)
 
 add_library(logger_lib STATIC ${LOGGER_SRC})
 
+target_compile_definitions(logger_lib PRIVATE PUGIXML_USE_ANNOTATIONS=1)
 target_link_libraries (logger_lib PRIVATE tomlplusplus::tomlplusplus quill::quill)
 
 # if(MSVC)
@@ -19,17 +20,17 @@ target_link_libraries (logger_lib PRIVATE tomlplusplus::tomlplusplus quill::quil
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 
 # if(JSON_RPC_SERVER)
-#     add_subdirectory(json_rpc_server)
+    add_subdirectory(json_rpc_server)
 # endif()
 
 # if(SOAP_SERVER)
     # add_subdirectory(soap_server)
 # endif()
 
-# if(SOAP_SERVER)
+# if(GRPC_SERVER)
     # add_subdirectory(grpc_server)
 # endif()
 
 # if(REST_SERVER)
-    add_subdirectory(rest_server)
+#    add_subdirectory(rest_server)
 # endif()

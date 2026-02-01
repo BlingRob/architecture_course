@@ -5,7 +5,7 @@ find_package(Boost REQUIRED CONFIG)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(CPP_FILES main.cpp json_rpc_server.cpp secret_data_manager.cpp)
+set(CPP_FILES main.cpp server.cpp secret_data_manager.cpp session.cpp method_registry.cpp)
 
 add_executable (${PROJECT_NAME} ${CPP_FILES})
 
@@ -13,6 +13,6 @@ target_link_libraries (${PROJECT_NAME} boost::boost nlohmann_json::nlohmann_json
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
-    target_compile_options(${PROJECT_NAME} PRIVATE /fsanitize=address /Zi)
-    target_link_options(${PROJECT_NAME} PRIVATE /fsanitize=address)
+    # target_compile_options(${PROJECT_NAME} PRIVATE /fsanitize=address /Zi)
+    # target_link_options(${PROJECT_NAME} PRIVATE /fsanitize=address)
 endif()
