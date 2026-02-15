@@ -20,7 +20,7 @@ target_link_libraries (logger_lib PRIVATE tomlplusplus::tomlplusplus quill::quil
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 
 # if(JSON_RPC_SERVER)
-    add_subdirectory(json_rpc_server)
+    # add_subdirectory(json_rpc_server)
 # endif()
 
 # if(SOAP_SERVER)
@@ -28,7 +28,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 # endif()
 
 # if(GRPC_SERVER)
-    # add_subdirectory(grpc_server)
+    add_subdirectory(grpc_server)
 # endif()
 
 # if(REST_SERVER)

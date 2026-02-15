@@ -3,7 +3,7 @@ project(grpc_server LANGUAGES CXX)
 
 find_package(asio-grpc REQUIRED CONFIG)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp ecommerce_service_impl.cpp in_memory_storage.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE asio-grpc::asio-grpc logger_lib tomlplusplus::tomlplusplus quill::quill)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
