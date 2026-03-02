@@ -1,0 +1,48 @@
+﻿1. Создать участника Alice
+curl -X POST "http://localhost:17000/participants" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Alice"}'
+
+2. Создать участника Bob
+curl -X POST "http://localhost:17000/participants" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Bob"}'
+
+3. Создать комнату (используем API-ключ Alice)
+curl -X POST "http://localhost:17000/rooms" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: <ALICE_API_KEY>" \
+  -d '{"name":"architecture-room"}'
+
+4. Добавить Bob в комнату (запрос от Alice)
+curl -X POST "http://localhost:17000/rooms/<ROOM_ID>/participants" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: <ALICE_API_KEY>" \
+  -d '{"participantId": <BOB_ID>}'
+
+5. Отправить текстовое сообщение от Alice
+curl -X POST "http://localhost:17000/rooms/<ROOM_ID>/messages" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: <ALICE_API_KEY>" \
+  -d '{"type":"text","text":"Hello from Alice"}'
+
+6. Отправить изображение от Bob
+curl -X POST "http://localhost:17000/rooms/<ROOM_ID>/messages" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: <BOB_API_KEY>" \
+  -d '{"type":"image","imageUrl":"https://example.com/pic.png"}'
+
+7. Получить сообщения с фильтром по времени
+curl -X GET "http://localhost:17000/rooms/<ROOM_ID>/messages?fromTs=<UNIX_MS_FROM>&toTs=<UNIX_MS_TO>" \
+  -H "X-API-Key: <ALICE_API_KEY>"
+
+8. Long polling: ждать новые сообщения после известного ID
+curl -X GET "http://localhost:17000/rooms/<ROOM_ID>/messages/poll?sinceId=<LAST_MESSAGE_ID>&timeout=25" \
+  -H "X-API-Key: <BOB_API_KEY>"
+
+9. Удалить участника Bob из комнаты (запрос от Alice)
+curl -X DELETE "http://localhost:17000/rooms/<ROOM_ID>/participants/<BOB_ID>" \
+  -H "X-API-Key: <ALICE_API_KEY>"
+
+10. Проверка здоровья сервера
+curl -X GET "http://localhost:17000/health"

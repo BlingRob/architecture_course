@@ -1,4 +1,4 @@
-if(MSVC)
+﻿if(MSVC)
     add_definitions(-DPUGIXML_USE_ANNOTATIONS=1)
 endif()
 
@@ -28,9 +28,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 # endif()
 
 # if(GRPC_SERVER)
-    add_subdirectory(grpc_server)
+    # add_subdirectory(grpc_server)
 # endif()
 
 # if(REST_SERVER)
 #    add_subdirectory(rest_server)
 # endif()
+add_subdirectory(long_polling_chat_server)
