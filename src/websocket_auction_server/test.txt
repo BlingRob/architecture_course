@@ -1,0 +1,32 @@
+﻿1. Подключиться к серверу (пример с wscat)
+wscat -c ws://localhost:18080
+
+2. Создать пользователя Alice
+{"action":"create_user","name":"Alice","balance":1000}
+
+3. Создать пользователя Bob
+{"action":"create_user","name":"Bob","balance":900}
+
+4. Добавить товар
+{"action":"add_item","name":"Vintage Clock","startingBid":100}
+
+5. Стартовать аукцион для itemId=1
+{"action":"start_auction","itemId":1}
+
+6. Поставить ставку от Alice
+{"action":"place_bid","itemId":1,"userId":1,"amount":120}
+
+7. Включить автоставку для Bob до 200
+{"action":"set_auto_bid","itemId":1,"userId":2,"maxAmount":200}
+
+8. Поставить ставку от Alice, чтобы увидеть авто-перебивку
+{"action":"place_bid","itemId":1,"userId":1,"amount":130}
+
+9. Получить полный снимок состояния
+{"action":"get_state"}
+
+10. Завершить аукцион
+{"action":"end_auction","itemId":1}
+
+11. Обновить баланс пользователя
+{"action":"update_balance","userId":1,"delta":250}

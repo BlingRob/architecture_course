@@ -35,3 +35,5 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 #    add_subdirectory(rest_server)
 # endif()
 add_subdirectory(long_polling_chat_server)
+add_subdirectory(websocket_auction_server)
+

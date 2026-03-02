@@ -1,4 +1,4 @@
-from conan import ConanFile
+﻿from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain
 
 class ArchitectureCourseRecipe(ConanFile):
@@ -10,7 +10,8 @@ class ArchitectureCourseRecipe(ConanFile):
         "json_rpc_server": [True, False],
         "soap_server": [True, False],
         "grpc_server": [True, False],
-        "rest_server": [True, False]
+        "rest_server": [True, False],
+        "websocket_auction_server": [True, False]
     }
     
     default_options = {
@@ -18,14 +19,15 @@ class ArchitectureCourseRecipe(ConanFile):
         "json_rpc_server": False,
         "soap_server": False,
         "grpc_server": False,
-        "rest_server": False
+        "rest_server": False,
+        "websocket_auction_server": False
     }
 
     def requirements(self):
         self.requires("boost/1.88.0")
         self.requires("quill/10.0.1")
         self.requires("tomlplusplus/3.4.0")
-        if self.options.json_rpc_server or self.options.rest_server:
+        if self.options.json_rpc_server or self.options.rest_server or self.options.websocket_auction_server:
             self.requires("nlohmann_json/3.11.3")
         if self.options.soap_server:
             self.requires("pugixml/1.15")
@@ -45,6 +47,7 @@ class ArchitectureCourseRecipe(ConanFile):
         tc.variables["SOAP_SERVER"] = self.options.soap_server
         tc.variables["GRPC_SERVER"] = self.options.grpc_server
         tc.variables["REST_SERVER"] = self.options.rest_server
+        tc.variables["WEBSOCKET_AUCTION_SERVER"] = self.options.websocket_auction_server
         tc.variables["GRAPH_QL_SERVER"] = self.options.rest_server
         tc.generate()
 
