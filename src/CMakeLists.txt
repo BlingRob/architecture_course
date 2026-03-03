@@ -37,3 +37,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 add_subdirectory(long_polling_chat_server)
 add_subdirectory(websocket_auction_server)
 
+
+add_subdirectory(webhook_example_server)
+

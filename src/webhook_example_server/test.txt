@@ -1,0 +1,18 @@
+﻿1. Проверка здоровья
+curl -X GET "http://localhost:19090/health"
+
+2. Отправка webhook-события
+curl -X POST "http://localhost:19090/webhooks/incoming" \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Secret: dev-secret" \
+  -H "X-Webhook-Event: order.created" \
+  -d "{\"orderId\":123,\"amount\":499.99}"
+
+3. Получение последних событий
+curl -X GET "http://localhost:19090/webhooks/events"
+
+4. Пример ошибки секрета
+curl -X POST "http://localhost:19090/webhooks/incoming" \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Secret: wrong" \
+  -d "{\"ping\":true}"
