@@ -40,3 +40,6 @@ add_subdirectory(websocket_auction_server)
 
 add_subdirectory(webhook_example_server)
 
+
+add_subdirectory(sse_example_server)
+
