@@ -1,0 +1,12 @@
+﻿1. Проверка здоровья
+curl -X GET "http://localhost:19191/health"
+
+2. Подключиться к SSE-потоку
+curl -N "http://localhost:19191/events"
+
+3. Пример вывода в потоке
+retry: 3000
+
+event: tick
+id: 1
+data: {"counter":1,"timestampMs":...}
