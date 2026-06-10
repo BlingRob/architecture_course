@@ -11,6 +11,7 @@ class ArchitectureCourseRecipe(ConanFile):
         "soap_server": [True, False],
         "grpc_server": [True, False],
         "rest_server": [True, False],
+        "kafka": [True, False],
         "websocket_auction_server": [True, False]
     }
     
@@ -20,6 +21,7 @@ class ArchitectureCourseRecipe(ConanFile):
         "soap_server": False,
         "grpc_server": False,
         "rest_server": False,
+        "kafka": False,
         "websocket_auction_server": False
     }
 
@@ -35,6 +37,8 @@ class ArchitectureCourseRecipe(ConanFile):
             self.requires("asio-grpc/3.5.0")
         if self.options.rest_server:
             self.requires("cpp-httplib/0.29.0")
+        if self.options.kafka:
+            self.requires("modern-cpp-kafka/2024.07.03")
 
     # def configure(self):
     #     if self.options.grpc_server:
@@ -48,7 +52,7 @@ class ArchitectureCourseRecipe(ConanFile):
         tc.variables["GRPC_SERVER"] = self.options.grpc_server
         tc.variables["REST_SERVER"] = self.options.rest_server
         tc.variables["WEBSOCKET_AUCTION_SERVER"] = self.options.websocket_auction_server
-        tc.variables["GRAPH_QL_SERVER"] = self.options.rest_server
+        tc.variables["KAFKA"] = self.options.kafka
         tc.generate()
 
     def build(self):

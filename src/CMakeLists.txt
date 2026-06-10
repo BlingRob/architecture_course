@@ -34,12 +34,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 # if(REST_SERVER)
 #    add_subdirectory(rest_server)
 # endif()
-add_subdirectory(long_polling_chat_server)
-add_subdirectory(websocket_auction_server)
+# add_subdirectory(long_polling_chat_server)
+# add_subdirectory(websocket_auction_server)
 
 
-add_subdirectory(webhook_example_server)
-
-
-add_subdirectory(sse_example_server)
+# add_subdirectory(webhook_example_server)
+# add_subdirectory(sse_example_server)
+add_subdirectory(kafka_example)
 
